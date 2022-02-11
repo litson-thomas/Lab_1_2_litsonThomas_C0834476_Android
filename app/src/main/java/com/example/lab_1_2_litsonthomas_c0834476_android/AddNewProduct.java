@@ -66,6 +66,7 @@ public class AddNewProduct extends AppCompatActivity {
             if(!isEditMode && isAllValuesEntered()){
               Product product = new Product(productName.getText().toString(), productDesc.getText().toString(), Double.valueOf(productPrice.getText().toString()), Double.valueOf(productLatitude.getText().toString()), Double.valueOf(productLongitude.getText().toString()));
               database.productDao().insert(product);
+              database.productDao().notify();
               finish();
             }
             else if(isEditMode && isAllValuesEntered()){
