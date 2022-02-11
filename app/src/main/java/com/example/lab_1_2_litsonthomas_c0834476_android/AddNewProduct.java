@@ -66,14 +66,12 @@ public class AddNewProduct extends AppCompatActivity {
             if(!isEditMode && isAllValuesEntered()){
               Product product = new Product(productName.getText().toString(), productDesc.getText().toString(), Double.valueOf(productPrice.getText().toString()), Double.valueOf(productLatitude.getText().toString()), Double.valueOf(productLongitude.getText().toString()));
               database.productDao().insert(product);
-              Intent intent = new Intent(AddNewProduct.this, HomePage.class);
-              startActivity(intent);
+              finish();
             }
             else if(isEditMode && isAllValuesEntered()){
-              Product product = database.productDao().getProductById(productId);
-              database.productDao().updateProduct(product.getId(), product.getProductName(), product.getProductDesc(), product.getProductPrice(), product.getProviderLat(), product.getProviderLong());
-              Intent intent = new Intent(AddNewProduct.this, HomePage.class);
-              startActivity(intent);
+              // Product product = database.productDao().getProductById(productId);
+              database.productDao().updateProduct(productId, productName.getText().toString(), productDesc.getText().toString(), Double.valueOf(productPrice.getText().toString()), Double.valueOf(productLatitude.getText().toString()), Double.valueOf(productLongitude.getText().toString()));
+              finish();
             }
           }
         });

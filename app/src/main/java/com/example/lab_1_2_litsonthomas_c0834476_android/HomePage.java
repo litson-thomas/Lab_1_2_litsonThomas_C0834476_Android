@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 
 import com.example.lab_1_2_litsonthomas_c0834476_android.DB.ProductRoomDB;
 import com.example.lab_1_2_litsonthomas_c0834476_android.Model.Product;
@@ -22,6 +23,7 @@ import java.util.List;
 
 public class HomePage extends AppCompatActivity {
 
+    TextView subTitle;
     EditText searchInput;
     ImageView addNewBtn, searchBtn;
     RecyclerView recyclerView;
@@ -37,6 +39,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         // connect the components
+        subTitle = findViewById(R.id.sub_title);
         searchInput = findViewById(R.id.searchInput);
         searchBtn = findViewById(R.id.search_button);
         addNewBtn = findViewById(R.id.addButton);
@@ -107,12 +110,17 @@ public class HomePage extends AppCompatActivity {
 
     public void navigateToFirst(){
       if(productsList.size() > 0){
-        int count = database.productDao().getCount();
+        updateTheCount();
         Product product = productsList.get(0);
         Intent intent = new Intent(HomePage.this, ProductDetails.class);
         intent.putExtra("id", product.getId());
         startActivity(intent);
       }
+    }
+
+    public void updateTheCount(){
+      int count = database.productDao().getCount();
+      subTitle.setText("The total products available are: " + count);
     }
 
 }

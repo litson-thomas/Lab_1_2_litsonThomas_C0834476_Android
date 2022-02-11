@@ -26,7 +26,7 @@ public abstract class ProductDao {
   public abstract Product getProductById(int id);
 
   @Query("UPDATE products SET product_name = :productName, product_desc = :productDescription, product_price = :productPrice, provider_latitude = :providerLatitude, provider_longitude = :providerLongitude  WHERE product_id = :productId")
-  public abstract void updateProduct(Long productId, String productName, String productDescription, Double productPrice, Double providerLatitude, Double providerLongitude);
+  public abstract void updateProduct(int productId, String productName, String productDescription, Double productPrice, Double providerLatitude, Double providerLongitude);
 
   @Query("SELECT * FROM products order by product_id DESC")
   public abstract List<Product> getAll();
