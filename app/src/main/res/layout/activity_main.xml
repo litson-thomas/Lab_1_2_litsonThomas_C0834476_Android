@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/title_wrapper"
+    android:padding="25dp"
+  android:background="@color/bg"
+    tools:context=".MainActivity">
+
+
+  <LinearLayout
+    android:id="@+id/title_details"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="@id/title_wrapper"
+    app:layout_constraintLeft_toLeftOf="@id/title_wrapper"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
+
+    <TextView
+      android:id="@+id/title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/poppins_bold"
+      android:text="My Products"
+      android:textAlignment="textStart"
+      android:textColor="@color/black"
+      android:textSize="18dp" />
+
+    <TextView
+      android:id="@+id/sub_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/poppins"
+      android:text="Manage all products at one place!"
+      android:textAlignment="textStart"
+      android:textColor="@color/text_grey"
+      android:textSize="12dp" />
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/search_wrapper"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/title_details"
+    app:layout_constraintLeft_toLeftOf="@id/title_wrapper"
+    android:orientation="horizontal"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="10dp"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
+
+    <EditText
+      android:id="@+id/searchInput"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:hint="Search products..."
+      android:layout_weight="1"
+      android:backgroundTint="@color/white"
+      android:paddingLeft="20dp"
+      android:layout_marginEnd="10dp"
+      tools:layout_editor_absoluteX="88dp"
+      android:background="@drawable/white_input"
+      tools:layout_editor_absoluteY="181dp" />
+
+    <Button
+      android:id="@+id/addButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@drawable/primary_button"
+      android:textColor="@color/white"
+      android:layout_marginBottom="10dp"
+      android:text="Add New" />
+
+  </LinearLayout>
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/products_list"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:layout_constraintBottom_toBottomOf="@id/title_wrapper"
+    app:layout_constraintTop_toBottomOf="@id/search_wrapper"
+    tools:listitem="@layout/product_list_item"
+    tools:layout_editor_absoluteX="1dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

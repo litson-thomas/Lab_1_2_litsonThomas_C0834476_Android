@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_marginTop="10dp"
+  android:layout_marginBottom="10dp"
+  android:id="@+id/details_wrapper">
+
+
+  <LinearLayout
+    android:id="@+id/main_wrapper"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    app:layout_constraintTop_toTopOf="@id/details_wrapper"
+    app:layout_constraintLeft_toLeftOf="@id/details_wrapper"
+    app:layout_constraintRight_toRightOf="@id/details_wrapper"
+    tools:layout_editor_absoluteX="1dp"
+    android:gravity="fill"
+    tools:layout_editor_absoluteY="1dp">
+
+    <LinearLayout
+      android:id="@+id/actions_wrapper"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_weight="0.5"
+      android:orientation="vertical">
+
+
+      <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Product Name"
+        android:textColor="@color/black"
+        android:textSize="16dp" />
+
+      <TextView
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="$450"
+        android:textColor="@color/text_grey"
+        android:textSize="13dp" />
+
+
+    </LinearLayout>
+
+    <ImageView
+      android:id="@+id/edit_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_edit"
+      android:layout_margin="5dp"
+      />
+
+    <ImageView
+      android:id="@+id/delete_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_baseline_delete_24"
+      android:layout_margin="15dp"
+      />
+
+  </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
