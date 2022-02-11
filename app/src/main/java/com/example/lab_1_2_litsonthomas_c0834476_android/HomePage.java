@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 
 import com.example.lab_1_2_litsonthomas_c0834476_android.DB.ProductRoomDB;
@@ -22,12 +23,13 @@ import java.util.List;
 public class HomePage extends AppCompatActivity {
 
     EditText searchInput;
-    Button addNewBtn;
+    ImageView addNewBtn, searchBtn;
     RecyclerView recyclerView;
     List<Product> productsList = new ArrayList<Product>();
     LinearLayoutManager linearLayoutManager;
     ProductRoomDB database;
     ProductAdaptor listAdapter;
+    Boolean haveInitialNavigated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +38,26 @@ public class HomePage extends AppCompatActivity {
 
         // connect the components
         searchInput = findViewById(R.id.searchInput);
+        searchBtn = findViewById(R.id.search_button);
         addNewBtn = findViewById(R.id.addButton);
         recyclerView = findViewById(R.id.products_list);
 
         database = ProductRoomDB.getInstance(this);
         productsList = database.productDao().getAll();
-        Log.i("Products are => ", ""+ productsList);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         listAdapter = new ProductAdaptor(HomePage.this, productsList);
         recyclerView.setAdapter(listAdapter);
+
+        // search products
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            productsList = database.productDao().getSearchResults(searchInput.getText().toString());
+            listAdapter = new ProductAdaptor(HomePage.this, productsList);
+            recyclerView.setAdapter(listAdapter);
+          }
+        });
 
         // add new product page
         addNewBtn.setOnClickListener(new View.OnClickListener() {
@@ -58,12 +70,12 @@ public class HomePage extends AppCompatActivity {
 
         // add dummy data
         addDummy();
+
     }
 
     String dummy_desc = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum";
     public void addDummy(){
       int count = database.productDao().getCount();
-      Log.i("count", ""+count);
       if(count < 10){
         database.productDao().deleteAll();
         Product product = new Product("Product #1", dummy_desc, 45.0, 43.800, 43.800);
@@ -86,8 +98,21 @@ public class HomePage extends AppCompatActivity {
         database.productDao().insert(product8);
         Product product9 = new Product("Product #10", dummy_desc, 45.0, 43.800, 43.800);
         database.productDao().insert(product9);
+        navigateToFirst();
+      }
+      else{
+        navigateToFirst();
       }
     }
 
+    public void navigateToFirst(){
+      if(productsList.size() > 0){
+        int count = database.productDao().getCount();
+        Product product = productsList.get(0);
+        Intent intent = new Intent(HomePage.this, ProductDetails.class);
+        intent.putExtra("id", product.getId());
+        startActivity(intent);
+      }
+    }
 
 }

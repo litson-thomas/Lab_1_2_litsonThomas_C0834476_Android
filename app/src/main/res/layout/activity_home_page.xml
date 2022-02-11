@@ -50,7 +50,7 @@
     app:layout_constraintLeft_toLeftOf="@id/title_wrapper"
     android:orientation="horizontal"
     android:layout_marginTop="20dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="20dp"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp">
 
@@ -69,14 +69,33 @@
       android:background="@drawable/white_input"
       tools:layout_editor_absoluteY="181dp" />
 
-    <Button
-      android:id="@+id/addButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+    <ImageView
+      android:id="@+id/search_button"
+      android:layout_width="50dp"
+      android:layout_height="65dp"
       android:background="@drawable/primary_button"
-      android:textColor="@color/white"
+      android:padding="12dp"
+      android:layout_marginRight="5dp"
+      android:src="@drawable/ic_search"/>
+
+    <ImageView
+      android:id="@+id/addButton"
+      android:layout_width="50dp"
+      android:layout_height="65dp"
+      android:background="@drawable/primary_button"
+      android:padding="12dp"
+      android:layout_marginRight="5dp"
       android:layout_marginBottom="10dp"
-      android:text="Add New" />
+      android:src="@drawable/ic_add_24"/>
+
+<!--    <Button-->
+<!--      android:id="@+id/addButton"-->
+<!--      android:layout_width="wrap_content"-->
+<!--      android:layout_height="wrap_content"-->
+<!--      android:background="@drawable/primary_button"-->
+<!--      android:textColor="@color/white"-->
+<!--      android:layout_marginBottom="10dp"-->
+<!--      android:text="Add New" />-->
 
   </LinearLayout>
 

@@ -2,11 +2,13 @@ package com.example.lab_1_2_litsonthomas_c0834476_android;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,13 +44,24 @@ public class ProductAdaptor extends RecyclerView.Adapter<ProductAdaptor.ViewHold
     Product product = productsList.get(position);
     database = ProductRoomDB.getInstance(context);
     holder.title.setText(product.getProductName());
-    holder.price.setText(""+product.getProductPrice());
-    Log.i("product in list are => ", ""+product.getProductName());
+    holder.price.setText("Price: $"+product.getProductPrice());
+
+    holder.wrapperLayout.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(context, ProductDetails.class);
+        intent.putExtra("id", product.getId());
+        context.startActivity(intent);
+      }
+    });
+
     // edit button click
     holder.btn_edit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-
+        Intent intent = new Intent(context, AddNewProduct.class);
+        intent.putExtra("id", product.getId());
+        context.startActivity(intent);
       }
     });
     // delete button click
@@ -73,11 +86,13 @@ public class ProductAdaptor extends RecyclerView.Adapter<ProductAdaptor.ViewHold
 
   public class ViewHolder extends RecyclerView.ViewHolder {
 
+    LinearLayout wrapperLayout;
     TextView title, price;
     ImageView btn_edit, btn_delete;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
+      wrapperLayout = itemView.findViewById(R.id.actions_wrapper);
       title = itemView.findViewById(R.id.title);
       price = itemView.findViewById(R.id.price);
       btn_edit = itemView.findViewById(R.id.edit_btn);
